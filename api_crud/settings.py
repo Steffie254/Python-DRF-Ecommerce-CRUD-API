@@ -34,7 +34,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
 }
+
 
 
 # Application definition
@@ -49,7 +53,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'authentication',
-    'movies',
+    'ecommerce',
 ]
 
 SITE_ID = 1
@@ -77,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
