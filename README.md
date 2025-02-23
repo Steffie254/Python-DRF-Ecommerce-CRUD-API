@@ -20,13 +20,33 @@ pip install -r requirements.txt
 ## API Structure
 In our RESTful API, endpoints are structured as follows:
 
-| Endpoint        | HTTP Method | CRUD Method | Description            |
-|---------------|------------|-------------|------------------------|
-| `/products/`       | GET        | READ        | Get all products       |
-| `/products/:id/`   | GET        | READ        | Get a single product   |
-| `/products/`       | POST       | CREATE      | Create a new product   |
-| `/products/:id/`   | PUT        | UPDATE      | Update a product       |
-| `/products/:id/`   | DELETE     | DELETE      | Delete a product       |
+| Endpoint              | HTTP Method | CRUD Method | Description                     |
+|----------------------|------------|-------------|---------------------------------|
+| `/customers/`        | GET        | READ        | Get all customers              |
+| `/customers/:id/`    | GET        | READ        | Get a single customer          |
+| `/customers/`        | POST       | CREATE      | Create a new customer          |
+| `/customers/:id/`    | PUT        | UPDATE      | Update a customer              |
+| `/customers/:id/`    | DELETE     | DELETE      | Delete a customer              |
+| `/orders/`           | GET        | READ        | Get all orders                 |
+| `/orders/:id/`       | GET        | READ        | Get a single order             |
+| `/orders/`           | POST       | CREATE      | Create a new order             |
+| `/orders/:id/`       | PUT        | UPDATE      | Update an order                |
+| `/orders/:id/`       | DELETE     | DELETE      | Delete an order                |
+| `/products/`         | GET        | READ        | Get all products               |
+| `/products/:id/`     | GET        | READ        | Get a single product           |
+| `/products/`         | POST       | CREATE      | Create a new product           |
+| `/products/:id/`     | PUT        | UPDATE      | Update a product               |
+| `/products/:id/`     | DELETE     | DELETE      | Delete a product               |
+| `/order-items/`      | GET        | READ        | Get all order items            |
+| `/order-items/:id/`  | GET        | READ        | Get a single order item        |
+| `/order-items/`      | POST       | CREATE      | Create a new order item        |
+| `/order-items/:id/`  | PUT        | UPDATE      | Update an order item           |
+| `/order-items/:id/`  | DELETE     | DELETE      | Delete an order item           |
+| `/payments/`         | GET        | READ        | Get all payments               |
+| `/payments/:id/`     | GET        | READ        | Get a single payment           |
+| `/payments/`         | POST       | CREATE      | Create a new payment           |
+| `/payments/:id/`     | PUT        | UPDATE      | Update a payment               |
+| `/payments/:id/`     | DELETE     | DELETE      | Delete a payment               |
 
 ## Usage
 Use [curl](https://curl.haxx.se/), [httpie](https://github.com/jakubroztocil/httpie#installation), or [Postman](https://www.postman.com/) to test the API.
