@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'authentication',
+    'rest_framework_simplejwt',
     'ecommerce',
 ]
 
@@ -74,7 +75,7 @@ ROOT_URLCONF = 'api_crud.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.Djan goTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -108,7 +109,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': env('DATABASE_NAME'),
         'USER': env('DATABASE_USER'),
         'PASSWORD': env('DATABASE_PASSWORD'),

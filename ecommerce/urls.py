@@ -7,6 +7,7 @@ from . import views
 #     path('<int:pk>/', views.RetrieveUpdateDestroyMovieAPIView.as_view(), name='get_delete_update_movie'),
 # ]
 
+
 from django.urls import path
 from .views import (
     CustomerListCreateAPIView, CustomerRetrieveUpdateDestroyAPIView,
@@ -15,6 +16,7 @@ from .views import (
     OrderItemListCreateAPIView, OrderItemRetrieveUpdateDestroyAPIView,
     PaymentListCreateAPIView, PaymentRetrieveUpdateDestroyAPIView
 )
+
 
 urlpatterns = [
     path('customers/', CustomerListCreateAPIView.as_view(), name='customer-list-create'),
@@ -32,5 +34,6 @@ urlpatterns = [
     path('payments/', PaymentListCreateAPIView.as_view(), name='payment-list-create'),
     path('payments/<int:pk>/', PaymentRetrieveUpdateDestroyAPIView.as_view(), name='payment-detail'),
 ]
+
 
 
