@@ -27,7 +27,9 @@ class Order(models.Model):
         db_table = "orders"
 
     def __str__(self):
-        return f"{self.order_id} | {self.order_status} | {self.order_purchase_timestamp} | {self.order_approved_at} | {self.order_delivered_timestamp} | {self.order_estimated_delivery_date}"
+        customer_display = f"{self.customer.customer_id}" if self.customer else "No Customer"
+        return f"{self.order_id} | {customer_display} | {self.order_status} | {self.order_purchase_timestamp}"
+
 
 
 class Product(models.Model):
@@ -58,7 +60,9 @@ class OrderItem(models.Model):
         managed = False
 
     def __str__(self):
-        return f"{self.order_item_id} | {self.seller_id} | {self.price} | {self.shipping_charges}"
+        order_display = self.order.order_id if self.order else "No Order"
+        product_display = self.product.product_id if self.product else "No Product"
+        return f"{self.order_item_id} | Order: {order_display} | Product: {product_display} | Price: {self.price}"
 
 
 class Payment(models.Model):
@@ -67,11 +71,12 @@ class Payment(models.Model):
     payment_sequential = models.CharField(max_length=50, null=True, blank=True)
     payment_type = models.CharField(max_length=50, null=True, blank=True)
     payment_installments = models.CharField(max_length=50, null=True, blank=True)
-    payment_value = models.CharField(max_length=50, null=True, blank=True)
+    payment_value = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
     class Meta:
         db_table = "payments"
         managed = True 
 
     def __str__(self):
-        return f"{self.id} | {self.payment_sequential} | {self.payment_type} | {self.payment_installments} | {self.payment_value}"
+        order_display = f"{self.order.order_id} | {self.order.order_status} | {self.order.order_purchase_timestamp} | {self.order.order_approved_at} | {self.order.order_delivered_timestamp} | {self.order.order_estimated_delivery_date}" if self.order else "No Order"
+        return f"{self.id} | {order_display} | {self.payment_type} | {self.payment_value}"
