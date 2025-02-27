@@ -11,7 +11,7 @@ class Customer(models.Model):
         db_table = "customers"
 
     def __str__(self):
-        return self.customer_id
+        return f"ID: {self.customer_id} | Zip: {self.customer_zip_code_prefix} | City: {self.customer_city} | State: {self.customer_state}"
 
 
 class Order(models.Model):
@@ -27,7 +27,7 @@ class Order(models.Model):
         db_table = "orders"
 
     def __str__(self):
-        return self.order_id
+        return f"Order ID: {self.order_id} | Status: {self.order_status} | Customer: {self.customer.customer_id if self.customer else 'N/A'} | Purchase Date: {self.order_purchase_timestamp}"
 
 
 class Product(models.Model):
@@ -42,15 +42,12 @@ class Product(models.Model):
         db_table = "products"
 
     def __str__(self):
-        return self.product_id
+        return f"ID: {self.product_id} | Category: {self.product_category_name} | Weight: {self.product_weight_g}g | Dimensions: {self.product_length_cm}x{self.product_width_cm}x{self.product_height_cm} cm"
 
 
 class OrderItem(models.Model):
     order_item_id = models.AutoField(primary_key=True)
-    #order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items", null=True, blank=True)
-    #product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="order_items", null=True, blank=True)
 
-    # Ensure the order foreign key matches the VARCHAR type of order_id in the orders table
     order = models.ForeignKey(
         'Order',
         on_delete=models.CASCADE,
@@ -73,8 +70,7 @@ class OrderItem(models.Model):
         managed = False
 
     def __str__(self):
-        return f"{self.order_item_id} -{self.order.order_id} - {self.product.product_id}"
-
+        return f"Order Item ID: {self.order_item_id} | Order: {self.order.order_id if self.order else 'N/A'} | Product: {self.product.product_id if self.product else 'N/A'} | Seller: {self.seller_id} | Price: {self.price} | Shipping: {self.shipping_charges}"
 
 
 class Payment(models.Model):
@@ -97,4 +93,4 @@ class Payment(models.Model):
         managed = True 
 
     def __str__(self):
-        return f"Payment {self.payment_sequential} for Order {self.order_id}"
+        return f"Payment ID: {self.id} | Order: {self.order.order_id if self.order else 'N/A'} | Type: {self.payment_type} | Installments: {self.payment_installments} | Value: {self.payment_value}"
