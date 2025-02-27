@@ -28,7 +28,7 @@ class Order(models.Model):
 
     def __str__(self):
         customer_display = f"{self.customer.customer_id}" if self.customer else "No Customer"
-        return f"{self.order_id} | {customer_display} | {self.order_status} | {self.order_purchase_timestamp}"
+        return f"{self.order_id} | {customer_display} | {self.order_status} | {self.order_purchase_timestamp} | {self.order_approved_at} | {self.order_delivered_timestamp} | {self.order_estimated_delivery_date}"
 
 
 
@@ -62,7 +62,7 @@ class OrderItem(models.Model):
     def __str__(self):
         order_display = self.order.order_id if self.order else "No Order"
         product_display = self.product.product_id if self.product else "No Product"
-        return f"{self.order_item_id} | Order: {order_display} | Product: {product_display} | Price: {self.price}"
+        return f"{self.order_item_id} | Order: {order_display} | Product: {product_display} | Seller: {self.seller_id}| Price: {self.price}| Shipping Charges: {self.shipping_charges}"
 
 
 class Payment(models.Model):
@@ -78,5 +78,5 @@ class Payment(models.Model):
         managed = True 
 
     def __str__(self):
-        order_display = f"{self.order.order_id} | {self.order.order_status} | {self.order.order_purchase_timestamp} | {self.order.order_approved_at} | {self.order.order_delivered_timestamp} | {self.order.order_estimated_delivery_date}" if self.order else "No Order"
-        return f"{self.id} | {order_display} | {self.payment_type} | {self.payment_value}"
+        order_display = f"{self.order.order_id} | {self.order.order_status} | {self.order.order_purchase_timestamp}" if self.order else "No Order"
+        return f"{self.id} | {order_display} | {self.payment_sequential} | {self.payment_type}  | {self.payment_installments}  | {self.payment_value}"
